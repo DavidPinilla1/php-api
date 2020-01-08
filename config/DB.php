@@ -4,7 +4,9 @@ class DB{
     private $conn;
     public function connect(){
         try {
-           return  $this->conn = new PDO($this->dsn, 'root');
+            $this->conn = new PDO($this->dsn, 'root');
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $this->conn;
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
